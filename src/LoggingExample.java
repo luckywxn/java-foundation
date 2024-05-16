@@ -1,11 +1,18 @@
+import java.io.IOException;
 import java.util.logging.*;
 
 public class LoggingExample {
     private static final Logger logger = Logger.getLogger(LoggingExample.class.getName());
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // 配置日志级别
         logger.setLevel(Level.FINEST);
+        // 创建一个FileHandler，限制日志文件大小为1MB，最多保存3个文件进行轮转
+        FileHandler fileHandler = new FileHandler("app.log", 1024 * 1024, 3, true);
+
+        // 设置日志格式
+        fileHandler.setFormatter(new SimpleFormatter());
+        logger.addHandler(fileHandler);
 
         // 创建控制台处理器
         ConsoleHandler handler = new ConsoleHandler();
