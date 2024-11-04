@@ -105,10 +105,10 @@ public class JDK8_Test {
         Consumer<String> printer = System.out::println;
         printer.accept("Hello, world!");
 
-        Predicate isEven = n -> (int)n % 2 == 0;
+        Predicate<Integer> isEven = n -> n % 2 == 0;
         System.out.println(isEven.test(7));
 
-        Supplier randomString = () -> "Random String";
+        Supplier<String> randomString = () -> "Random String";
         System.out.println(randomString.get());
 
 
