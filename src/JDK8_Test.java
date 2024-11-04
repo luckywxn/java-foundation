@@ -4,7 +4,10 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -80,7 +83,6 @@ public class JDK8_Test {
          */
          Collections.sort(persons, Comparator.comparing(Person::getAge));
         persons.forEach(p -> System.out.println(p.getName()));
-
     }
 
     public static void methodReferenceTest(){
@@ -99,6 +101,16 @@ public class JDK8_Test {
          */
         Function<String, Integer> toLength = String::length;
         System.out.println(toLength.apply("hello"));
+
+        Consumer<String> printer = System.out::println;
+        printer.accept("Hello, world!");
+
+        Predicate isEven = n -> (int)n % 2 == 0;
+        System.out.println(isEven.test(7));
+
+        Supplier randomString = () -> "Random String";
+        System.out.println(randomString.get());
+
 
         /**
          * 4、引用构造方法
